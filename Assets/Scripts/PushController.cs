@@ -4,11 +4,7 @@ public class PushController : MonoBehaviour
 {
     private void Start()
     {
-        transform.DOLocalMoveX(-1.5f, 1)
+        transform.DOLocalMoveX(-3.5f, 1)
             .SetLoops(-1, LoopType.Yoyo);
-    }
-    private void Update()
-    {
-
     }
 }
