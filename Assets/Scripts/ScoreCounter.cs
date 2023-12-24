@@ -1,12 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreCounter : Singleton<ScoreCounter>
 {
-    [SerializeField] int _score;
+    [SerializeField] private int _score;
+    private Text _text;
     public int Score => _score;
+    private void Start()
+    {
+        _text = GetComponent<Text>();
+    }
     public void AddScore(int value)
     {
         _score += value;
-        Debug.Log($"NowScore : {_score}");
+        _text.text = $"Credit : {_score:000000}";
     }
 }
