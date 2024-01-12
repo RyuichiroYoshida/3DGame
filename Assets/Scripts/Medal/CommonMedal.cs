@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class CommonMedal : MedalBase
+namespace Medal
 {
-    [SerializeField] int _commonMedalScore = 10;
-
-    private void Start()
+    public class CommonMedal : MedalBase
     {
-        base._score = _commonMedalScore;
+        [SerializeField] int _commonMedalScore = 10;
+
+        private void Start()
+        {
+            base._score = _commonMedalScore;
+        }
     }
 }

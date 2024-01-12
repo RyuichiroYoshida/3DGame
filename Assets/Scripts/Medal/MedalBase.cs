@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class MedalBase : MonoBehaviour
+namespace Medal
 {
-    protected int _score;
-    protected void OnCollisionEnter(Collision collision)
+    public class MedalBase : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("DestroyZone"))
+        protected int _score;
+        protected void OnCollisionEnter(Collision collision)
         {
-            ScoreCounter.Instance.AddScore(_score);
-            Destroy(this.gameObject);
+            if (collision.gameObject.CompareTag("DestroyZone"))
+            {
+                ScoreCounter.Instance.AddScore(_score);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
