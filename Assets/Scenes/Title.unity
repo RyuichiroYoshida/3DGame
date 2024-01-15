@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 133299422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 133299424}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: Fade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Main
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &133299422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 524876953}
   _isFadeIn: 1
+  _fadeTime: 2
 --- !u!1 &444737967
 GameObject:
   m_ObjectHideFlags: 0
