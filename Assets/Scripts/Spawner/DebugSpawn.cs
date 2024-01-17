@@ -3,6 +3,14 @@ using UnityEngine;
 public class DebugSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject _medal;
+
+    public void CheckPool()
+    {
+        var pool = MedalObjectPool.Instance.Pool;
+        Debug.Log($"プールの合計枚数 {pool.CountAll}");
+        Debug.Log($"未返却枚数 {pool.CountActive}");
+        Debug.Log($"利用可能枚数 {pool.CountInactive}");
+    }
     public void Spawn()
     {
         var pos = this.transform.position;
