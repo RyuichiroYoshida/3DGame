@@ -7,6 +7,7 @@ public class PushController : MonoBehaviour
     private void Start()
     {
         transform.DOLocalMoveX(_value, _time)
+            .SetLink(this.gameObject)
             .SetLoops(-1, LoopType.Yoyo);
     }
 }

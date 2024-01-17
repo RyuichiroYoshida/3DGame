@@ -27,6 +27,7 @@ public class ChangeScene : MonoBehaviour
     {
         _image.gameObject.SetActive(true);
         _image.DOFade(_alpha, _fadeTime)
+            .SetLink(gameObject)
             .OnComplete(() => SceneManager.LoadScene(loadSceneName));
     }
     
