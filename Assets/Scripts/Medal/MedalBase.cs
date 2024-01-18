@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Medal
 {
@@ -8,12 +7,11 @@ namespace Medal
         protected int _score;
         protected void OnCollisionEnter(Collision collision)
         {
-            var spawnerPos = GameObject.FindGameObjectWithTag("Spawner").GetComponent<Transform>().position;
+            var spawnerPos = GameObject.FindWithTag("Spawner").GetComponent<Transform>().position;
             if (collision.gameObject.CompareTag("DestroyZone"))
             {
                 ScoreCounter.Instance.AddScore(_score);
-                var random = Random.Range(-4, 4);
-                this.transform.position = new Vector3(spawnerPos.x, spawnerPos.y, spawnerPos.z + random);
+                this.transform.position = new Vector3(spawnerPos.x, spawnerPos.y, spawnerPos.z + Random.Range(-8, 8));
                 MedalObjectPool.Instance.Pool.Release(this.gameObject);
             }
         }

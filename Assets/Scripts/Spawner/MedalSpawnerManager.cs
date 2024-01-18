@@ -3,18 +3,16 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-[RequireComponent(typeof(SpawnMedalSelector))]
 public class MedalSpawnerManager : MonoBehaviour
 {
     [SerializeField] private float _autoSpawnSpan = 5;
     [SerializeField] private bool _isFiver = false;
     [SerializeField] private float _fiverAutoSpawnSpan = 0.1f;
-    private SpawnMedalSelector _spawnMedalSelector;
+    [SerializeField] private SpawnMedal _spawnMedal;
 
 
     private void Start()
     {
-        TryGetComponent(out _spawnMedalSelector);
         var ct = this.GetCancellationTokenOnDestroy();
         AutoSpawnAsync(ct).Forget();
     }
@@ -26,12 +24,12 @@ public class MedalSpawnerManager : MonoBehaviour
             if (_isFiver)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(_fiverAutoSpawnSpan), cancellationToken: ct);
-                _spawnMedalSelector.SelectMedal();
+                _spawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
                 continue;
             }
 
             await UniTask.Delay(TimeSpan.FromSeconds(_autoSpawnSpan), cancellationToken: ct);
-            _spawnMedalSelector.SelectMedal();
+            _spawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
         }
     }
 }
