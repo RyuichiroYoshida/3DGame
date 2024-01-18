@@ -9,6 +9,7 @@ namespace Medal
         private void Start()
         {
             base._score = _rareMedalScore;
+            base._rigidbody = GetComponent<Rigidbody>();
         }
     }
 }

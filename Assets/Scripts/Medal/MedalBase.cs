@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace Medal
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class MedalBase : MonoBehaviour
     {
         protected int _score;
+        protected Rigidbody _rigidbody;
         protected void OnCollisionEnter(Collision collision)
         {
             var spawnerPos = GameObject.FindWithTag("Spawner").GetComponent<Transform>().position;
@@ -12,6 +14,7 @@ namespace Medal
             {
                 ScoreCounter.Instance.AddScore(_score);
                 this.transform.position = new Vector3(spawnerPos.x, spawnerPos.y, spawnerPos.z + Random.Range(-8, 8));
+                _rigidbody.velocity = Vector3.zero;
                 MedalObjectPool.Instance.Pool.Release(this.gameObject);
             }
         }
