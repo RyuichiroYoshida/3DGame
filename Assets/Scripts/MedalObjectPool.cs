@@ -30,7 +30,11 @@ public class MedalObjectPool : Singleton<MedalObjectPool>
     {
         var spawnerPos = GameObject.FindWithTag("Spawner").GetComponent<Transform>().position;
         var randomSpawnPos = new Vector3(spawnerPos.x, spawnerPos.y, spawnerPos.z + Random.Range(-8, 8));
-        var randomMedal = Random.Range(0, 2); // TODO 召喚するメダルのランダムロジック作成
+        var randomMedal = 0;
+        if (Random.Range(0, 11) == 1) // TODO 召喚するメダルのランダムロジック作成
+        {
+            randomMedal = 1;
+        }
         return Instantiate(_medalPrefabs[randomMedal], randomSpawnPos, Quaternion.identity, _medalParent[randomMedal]);
     }
 }
