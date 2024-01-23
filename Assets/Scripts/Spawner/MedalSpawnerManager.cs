@@ -10,7 +10,11 @@ public class MedalSpawnerManager : MonoBehaviour
     [SerializeField] private float _fiverAutoSpawnSpan = 0.1f;
     [SerializeField] private SpawnMedal _spawnMedal;
 
-
+    public bool IsFiver
+    {
+        get => _isFiver;
+        set => value = _isFiver;
+    }
     private void Start()
     {
         var ct = this.GetCancellationTokenOnDestroy();
@@ -27,7 +31,6 @@ public class MedalSpawnerManager : MonoBehaviour
                 _spawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
                 continue;
             }
-
             await UniTask.Delay(TimeSpan.FromSeconds(_autoSpawnSpan), cancellationToken: ct);
             _spawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
         }
