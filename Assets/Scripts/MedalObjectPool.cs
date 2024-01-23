@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.Serialization;
 
 public class MedalObjectPool : Singleton<MedalObjectPool>
 {
-    [FormerlySerializedAs("_defaultCapacity")] [SerializeField] private int _defaultPoolCapacity = 100;
+    [SerializeField] private int _defaultPoolCapacity = 100;
     [SerializeField, Tooltip("生成するメダルの種類分プレハブを登録")] private GameObject[] _medalPrefabs;
     [SerializeField, Tooltip("生成したメダルを格納したいゲームオブジェクトを登録")] private Transform[] _medalParent;
     private ObjectPool<GameObject> _pool;
@@ -25,7 +23,7 @@ public class MedalObjectPool : Singleton<MedalObjectPool>
             maxSize: 300
         );
     }
-    
+
     private GameObject CreatePooledItem()
     {
         var spawnerPos = GameObject.FindWithTag("Spawner").GetComponent<Transform>().position;
