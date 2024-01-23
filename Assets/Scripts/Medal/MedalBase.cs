@@ -7,6 +7,7 @@ namespace Medal
     {
         protected int _score;
         protected Rigidbody _rigidbody;
+
         protected void OnCollisionEnter(Collision collision)
         {
             var spawnerPos = GameObject.FindWithTag("Spawner").GetComponent<Transform>().position;
