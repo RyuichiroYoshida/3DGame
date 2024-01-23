@@ -12,6 +12,7 @@ public class PauseController : MonoBehaviour
     }
     private void InitializePauseWindow()
     {
+        Time.timeScale = 1;
         if (_pauseWindow == null)
         {
             Debug.LogWarning("PauseManagerゲームオブジェクトにポーズ画面のゲームオブジェクトをアタッチしてください。");
@@ -25,5 +26,13 @@ public class PauseController : MonoBehaviour
     {
         _isPause = !_isPause;
         _pauseWindow.SetActive(_isPause);
+        if (_isPause)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 }
