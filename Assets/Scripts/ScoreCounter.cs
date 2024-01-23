@@ -9,10 +9,17 @@ public class ScoreCounter : Singleton<ScoreCounter>
     private void Start()
     {
         _text = GetComponent<Text>();
+        AddScore(StageManager.Instance.StartCredit);
     }
     public void AddScore(int value)
     {
         _score += value;
+        _text.text = $"Credit : {_score:000000}";
+    }
+
+    public void SubScore(int value)
+    {
+        _score -= value;
         _text.text = $"Credit : {_score:000000}";
     }
 }
