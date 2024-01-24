@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ca5d435b94c8f459cf20bdaeed6708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rareMedalScore: 50
+  _rareMedalScore: 10
