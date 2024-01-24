@@ -10,7 +10,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             _pauseController.UsePauseWindow();
         }
-        else if (Input.GetButtonDown("Jump"))
+        else if (Input.GetButton("Jump"))
         {
             if (ScoreCounter.Instance.Score < StageManager.Instance.StageBetCount)
             {
