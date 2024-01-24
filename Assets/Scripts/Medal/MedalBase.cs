@@ -16,6 +16,8 @@ namespace Medal
                 ScoreCounter.Instance.AddScore(_score);
                 this.transform.position = new Vector3(spawnerPos.x, spawnerPos.y, spawnerPos.z + Random.Range(-8, 8));
                 _rigidbody.velocity = Vector3.zero;
+                FiverManager.Instance.FiverCheck();
+                BombController.Instance.AddBombGauge(_score);
                 MedalObjectPool.Instance.Pool.Release(this.gameObject);
             }
         }

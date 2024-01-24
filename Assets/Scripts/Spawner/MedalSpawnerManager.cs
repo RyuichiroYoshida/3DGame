@@ -6,15 +6,9 @@ using UnityEngine;
 public class MedalSpawnerManager : MonoBehaviour
 {
     [SerializeField] private float _autoSpawnSpan = 5;
-    [SerializeField] private bool _isFiver = false;
     [SerializeField] private float _fiverAutoSpawnSpan = 0.1f;
     [SerializeField] private SpawnMedal _spawnMedal;
-
-    public bool IsFiver
-    {
-        get => _isFiver;
-        set => value = _isFiver;
-    }
+    
     private void Start()
     {
         var ct = this.GetCancellationTokenOnDestroy();
@@ -25,7 +19,7 @@ public class MedalSpawnerManager : MonoBehaviour
     {
         while (true)
         {
-            if (_isFiver)
+            if (FiverManager.Instance.IsFiver)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(_fiverAutoSpawnSpan), cancellationToken: ct);
                 _spawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
