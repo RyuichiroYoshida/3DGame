@@ -3,7 +3,6 @@ using UnityEngine.Pool;
 
 public class MedalObjectPool : Singleton<MedalObjectPool>
 {
-    [SerializeField] private int _defaultPoolCapacity = 100;
     [SerializeField, Tooltip("生成するメダルの種類分プレハブを登録")] private GameObject[] _medalPrefabs;
     [SerializeField, Tooltip("生成したメダルを格納したいゲームオブジェクトを登録")] private Transform[] _medalParent;
     private ObjectPool<GameObject> _pool;
@@ -18,9 +17,7 @@ public class MedalObjectPool : Singleton<MedalObjectPool>
             actionOnGet: target => target.SetActive(true), // オブジェクト取得時処理 
             actionOnRelease: target => target.SetActive(false), // オブジェクト解放処理
             actionOnDestroy: target => Destroy(target), // オブジェクト破棄時処理
-            collectionCheck: true,
-            defaultCapacity: _defaultPoolCapacity, // 最初のプールのサイズ
-            maxSize: 300
+            collectionCheck: true
         );
     }
 
