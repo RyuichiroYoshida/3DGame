@@ -14,12 +14,12 @@ public class ScoreCounter : Singleton<ScoreCounter>
     public void AddScore(int value)
     {
         _score += value;
-        _text.text = $"Credit : {_score:000000}";
+        _text.text = $"Credit  {_score:000000}";
     }
 
     public void SubScore(int value)
     {
         _score -= value;
-        _text.text = $"Credit : {_score:000000}";
+        _text.text = $"Credit  {_score:000000}";
     }
 }

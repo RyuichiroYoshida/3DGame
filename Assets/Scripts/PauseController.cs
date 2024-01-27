@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PauseController : MonoBehaviour
 {
-    [SerializeField] private GameObject _pauseWindow;
+    [SerializeField] private GameObject _pauseCanvas;
+    [SerializeField] private GameObject _otherCanvas;
     private bool _isPause = false;
 
     public bool IsPause => _isPause;
@@ -13,19 +15,21 @@ public class PauseController : MonoBehaviour
     private void InitializePauseWindow()
     {
         Time.timeScale = 1;
-        if (_pauseWindow == null)
+        if (_pauseCanvas == null)
         {
             Debug.LogWarning("PauseManagerゲームオブジェクトにポーズ画面のゲームオブジェクトをアタッチしてください。");
         }
         else
         {
-            _pauseWindow.SetActive(false);
+            _pauseCanvas.SetActive(false);
+            _otherCanvas.SetActive(true);
         }
     }
     public void UsePauseWindow()
     {
         _isPause = !_isPause;
-        _pauseWindow.SetActive(_isPause);
+        _pauseCanvas.SetActive(_isPause);
+        _otherCanvas.SetActive(!_isPause);
         if (_isPause)
         {
             Time.timeScale = 0;
