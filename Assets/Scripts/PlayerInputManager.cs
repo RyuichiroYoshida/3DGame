@@ -4,8 +4,20 @@ public class PlayerInputManager : MonoBehaviour
 {
     [SerializeField] private PauseController _pauseController;
     [SerializeField] private SpawnMedal _spawnMedal;
+    [SerializeField] private MedalShooterMove _shooterMove;
+    
     private void Update()
     {
+        var horizontal = Input.GetAxisRaw("Horizontal");
+        var vertical = Input.GetAxisRaw("Vertical");
+        if (horizontal != 0)
+        {
+            _shooterMove.MoveShooterHorizontal(horizontal);
+        }
+        else if (vertical != 0)
+        {
+            _shooterMove.MoveShooterVertical(vertical);
+        }
         if (Input.GetButtonUp("Cancel"))
         {
             _pauseController.UsePauseWindow();

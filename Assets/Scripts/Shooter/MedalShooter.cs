@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class MedalShooter : MonoBehaviour
 {
-    [SerializeField] private LayerMask _stageLayer;
     [SerializeField] private Transform _middleTrans;
     [SerializeField] private Transform _endTrans;
     [SerializeField] private Transform _markerTrans;
@@ -22,7 +21,7 @@ public class MedalShooter : MonoBehaviour
         var endPos = _endTrans.position;
 
         Debug.DrawLine(middlePos, endPos, Color.magenta);
-        if (Physics.Linecast(middlePos, endPos, out var hit, _stageLayer))
+        if (Physics.Linecast(middlePos, endPos, out var hit))
         {
             endPos = hit.point;
         }
