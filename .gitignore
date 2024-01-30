@@ -91,3 +91,6 @@ Assets/AssetStoreTools/
 Assets/AssetStoreTools.meta
 Assets/Unity.VisualScripting.Generated.meta
 Assets/Unity.VisualScripting.Generated/
+Assets/Audios/
+qodana.yaml
+UML/Class.puml
