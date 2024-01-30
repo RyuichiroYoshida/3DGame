@@ -7,6 +7,7 @@ namespace Medal
     {
         protected int _score;
         protected Rigidbody _rigidbody;
+        private bool _isSound = false;
 
         protected void OnCollisionEnter(Collision collision)
         {
@@ -19,6 +20,12 @@ namespace Medal
                 FiverManager.Instance.FiverCheck();
                 BombController.Instance.AddBombGauge(_score);
                 MedalObjectPool.Instance.Pool.Release(this.gameObject);
+                _isSound = false;
+            }
+            else if (collision.gameObject.CompareTag("Ground") && _isSound == false)
+            {
+                _isSound = true;
+                AudioManager.Instance.AMedalDrop();
             }
         }
     }
