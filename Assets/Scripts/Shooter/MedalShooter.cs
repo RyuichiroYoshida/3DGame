@@ -51,5 +51,6 @@ public class MedalShooter : MonoBehaviour
         obj.transform.rotation = Quaternion.Euler(90 + Random.Range(-20, 21), 0, 0);
         obj.TryGetComponent(out Rigidbody rb);
         rb.AddForce((_middlePos - _startPos) * 11, ForceMode.Impulse);
+        StageManager.Instance.AddGameCount();
     }
 }
