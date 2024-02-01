@@ -1,13 +1,11 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PauseController : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseCanvas;
     [SerializeField] private GameObject _otherCanvas;
-    private bool _isPause = false;
-
-    public bool IsPause => _isPause;
+    [SerializeField] private GameTextManager _gameTextManager;
+    private bool _isPause;
     private void Start()
     {
         InitializePauseWindow();
@@ -27,6 +25,7 @@ public class PauseController : MonoBehaviour
     }
     public void UsePauseWindow()
     {
+        _gameTextManager.EditText();
         _isPause = !_isPause;
         _pauseCanvas.SetActive(_isPause);
         _otherCanvas.SetActive(!_isPause);
