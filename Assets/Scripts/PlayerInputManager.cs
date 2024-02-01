@@ -24,7 +24,7 @@ public class PlayerInputManager : MonoBehaviour
         }
         else if (Input.GetButtonDown("Jump"))
         {
-            if (ScoreCounter.Instance.Score < StageManager.Instance.StageBetCount)
+            if (ScoreCounter.Score < StageManager.Instance.StageBetCount)
             {
                 return;
             }
