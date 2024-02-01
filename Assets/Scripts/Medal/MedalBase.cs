@@ -20,6 +20,7 @@ namespace Medal
                 FiverManager.Instance.FiverCheck();
                 BombController.Instance.AddBombGauge(_score);
                 MedalObjectPool.Instance.Pool.Release(this.gameObject);
+                StageManager.Instance.AddMedalGetCount();
                 _isSound = false;
             }
             else if (collision.gameObject.CompareTag("Ground") && _isSound == false)
