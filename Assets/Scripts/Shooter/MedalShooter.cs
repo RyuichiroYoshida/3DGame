@@ -1,3 +1,4 @@
+using Lottery;
 using UnityEngine;
 
 public class MedalShooter : MonoBehaviour
@@ -6,6 +7,7 @@ public class MedalShooter : MonoBehaviour
     [SerializeField] private Transform _endTrans;
     [SerializeField] private int _rendererMiddlePoint = 10;
     [SerializeField] private GameObject _medalPrefab;
+    [SerializeField] private ChanceManager _chanceManager;
     private Vector3 _startPos;
     private Vector3 _middlePos;
     private Vector3 _endPos;
@@ -52,5 +54,6 @@ public class MedalShooter : MonoBehaviour
         obj.TryGetComponent(out Rigidbody rb);
         rb.AddForce((_middlePos - _startPos) * 11, ForceMode.Impulse);
         StageManager.Instance.AddGameCount();
+        _chanceManager.PlayGame();
     }
 }
