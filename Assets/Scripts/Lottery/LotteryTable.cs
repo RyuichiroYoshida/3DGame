@@ -16,5 +16,14 @@ namespace Lottery
         public float FiverChance => _fiverChance;
         public float FiverContinue => _fiverContinue;
         public float MedalBonus => _medalBonus;
+
+        public LotteryTable(LotteryTable table)
+        {
+            _directFiver = table.DirectFiver;
+            _fiverChallenge = table.FiverChallenge;
+            _fiverChance = table.FiverChance;
+            _fiverContinue = table.FiverContinue;
+            _medalBonus = table.MedalBonus;
+        }
     }
 }
