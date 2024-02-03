@@ -4,7 +4,7 @@ namespace Lottery.State
 {
     public class Normal : IState
     {
-        private readonly ChanceManager _chanceManager;
+        private ChanceManager _chanceManager;
 
         public Normal(ChanceManager chanceManager)
         {
@@ -12,16 +12,16 @@ namespace Lottery.State
         }
         public void Enter()
         {
-            Debug.Log("NormalStateEnter");
+            
         }
 
         public void Update()
         {
-            if (_chanceManager.LotteryTable.DirectFiver <= _chanceManager.RandomValue)
+            if (_chanceManager.LotteryTable.DirectFiver >= _chanceManager.RandomValue)
             {
-                
+                _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Fiver);
             }
-            else if (_chanceManager.LotteryTable.FiverChallenge <= _chanceManager.RandomValue)
+            else if (_chanceManager.LotteryTable.FiverChallenge >= _chanceManager.RandomValue)
             {
                 _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.FiverChance);
             }
@@ -29,7 +29,7 @@ namespace Lottery.State
 
         public void Exit()
         {
-            Debug.Log("NormalStateExit");
+            
         }
     }
 }

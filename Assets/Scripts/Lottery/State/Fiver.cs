@@ -12,20 +12,21 @@ namespace Lottery.State
         }
         public void Enter()
         {
-            Debug.Log("FiverStateEnter");
+            
         }
 
         public void Update()
         {
-            if (_chanceManager.LotteryTable.FiverContinue <= _chanceManager.RandomValue)
-            {
-                
-            }
+            _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Normal);
+            // if (_chanceManager.LotteryTable.FiverContinue <= _chanceManager.RandomValue)
+            // {
+            //     
+            // }
         }
 
         public void Exit()
         {
-            Debug.Log("FiverStateExit");
+            
         }
     }
 }

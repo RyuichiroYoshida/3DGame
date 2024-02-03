@@ -4,7 +4,7 @@ namespace Lottery.State
 {
     public class FiverChance : IState
     {
-        private readonly ChanceManager _chanceManager;
+        private ChanceManager _chanceManager;
 
         public FiverChance(ChanceManager chanceManager)
         {
@@ -12,12 +12,12 @@ namespace Lottery.State
         }
         public void Enter()
         {
-            Debug.Log("FiverChanceStateEnter");
+            
         }
 
         public void Update()
         {
-            if (_chanceManager.LotteryTable.FiverChance <= _chanceManager.RandomValue)
+            if (_chanceManager.LotteryTable.FiverChance >= _chanceManager.RandomValue)
             {
                 _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Fiver);
             }
@@ -25,7 +25,7 @@ namespace Lottery.State
 
         public void Exit()
         {
-            Debug.Log("FiverChanceStateExit");
+            
         }
     }
 }
