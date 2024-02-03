@@ -6,10 +6,10 @@ namespace Lottery
     [Serializable]
     public class StateMachine
     {
-        public IState CurrentState { get; private set; }
-        public Normal Normal { get; }
-        public FiverChance FiverChance { get; }
-        public Fiver Fiver { get; }
+        private IState _currentState;
+        public readonly Normal Normal;
+        public readonly FiverChance FiverChance;
+        public readonly Fiver Fiver;
 
         public event Action<IState> StateChanged; 
         
@@ -22,22 +22,22 @@ namespace Lottery
 
         public void Initialize(IState startState)
         {
-            CurrentState = startState;
+            _currentState = startState;
             startState.Enter();
             StateChanged?.Invoke(startState);
         }
 
         public void TransitionTo(IState nextState)
         {
-            CurrentState.Exit();
-            CurrentState = nextState;
+            _currentState.Exit();
+            _currentState = nextState;
             nextState.Enter();
             StateChanged?.Invoke(nextState);
         }
 
         public void StateUpdate()
         {
-            CurrentState?.Update();
+            _currentState?.Update();
         }
     }
 }
