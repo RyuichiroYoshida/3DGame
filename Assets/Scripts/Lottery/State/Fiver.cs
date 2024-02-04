@@ -12,16 +12,22 @@ namespace Lottery.State
         }
         public void Enter()
         {
-            
+            for (var i = 0; i < _chanceManager.LotteryMedal.FiverMedalCount; i++)
+            {
+                _chanceManager.SpawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
+            }
         }
 
         public void Update()
         {
-            _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Normal);
-            // if (_chanceManager.LotteryTable.FiverContinue <= _chanceManager.RandomValue)
-            // {
-            //     
-            // }
+            if (_chanceManager.LotteryTable.FiverContinue <= _chanceManager.RandomValue)
+            {
+                _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Fiver);
+            }
+            else
+            {
+                _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Normal);
+            }
         }
 
         public void Exit()
