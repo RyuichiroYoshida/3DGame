@@ -19,12 +19,6 @@ public class MedalSpawnerManager : MonoBehaviour
     {
         while (true)
         {
-            if (FiverManager.Instance.IsFiver)
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(_fiverAutoSpawnSpan), cancellationToken: ct);
-                _spawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
-                continue;
-            }
             await UniTask.Delay(TimeSpan.FromSeconds(_autoSpawnSpan), cancellationToken: ct);
             _spawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
         }

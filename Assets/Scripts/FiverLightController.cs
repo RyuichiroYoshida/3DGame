@@ -1,8 +1,10 @@
+using Lottery;
 using UnityEngine;
 
 public class FiverLightController : MonoBehaviour
 {
     [SerializeField] private float _speed = 1;
+    [SerializeField] private ChanceManager _chanceManager;
     [Header("Debug")]
     [SerializeField] private bool _isUse;
     [SerializeField] private float _h;
@@ -18,7 +20,7 @@ public class FiverLightController : MonoBehaviour
 
     private void Update()
     {
-        if (FiverManager.Instance.IsFiver == false || !_isUse)
+        if (_chanceManager.IsFiver == false || !_isUse)
         {
             _light.color = _defaultColor;
             return;

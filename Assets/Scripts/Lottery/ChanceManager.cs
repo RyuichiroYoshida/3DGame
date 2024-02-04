@@ -8,7 +8,10 @@ namespace Lottery
     public class ChanceManager : MonoBehaviour
     {
         [SerializeField] private int _lotteryStartCount;
+        [SerializeField] private bool _isFiver;
+        [SerializeField] private SpawnMedal _spawnMedal;
         [SerializeField] private LotteryTable _lotteryTable;
+        [SerializeField] private LotteryMedal _lotteryMedal;
         private StateMachine _stateMachine;
         [Header("デバッグ用")]
         [SerializeField] private Text _nowStateText;
@@ -17,12 +20,16 @@ namespace Lottery
 
         public float RandomValue => _randomValue;
         public StateMachine StateMachine => _stateMachine;
+        public bool IsFiver => _isFiver;
+        public SpawnMedal SpawnMedal => _spawnMedal;
         public LotteryTable LotteryTable => _lotteryTable;
+        public LotteryMedal LotteryMedal => _lotteryMedal;
 
         private void Awake()
         {
             _stateMachine = new StateMachine(this);
             _lotteryTable = new LotteryTable(_lotteryTable);
+            _lotteryMedal = new LotteryMedal(_lotteryMedal);
         }
 
         private void Start()
