@@ -1,10 +1,9 @@
-using UnityEngine;
-
 namespace Lottery.State
 {
     public class FiverChance : IState
     {
         private ChanceManager _chanceManager;
+        private int _challengeCount = 0;
 
         public FiverChance(ChanceManager chanceManager)
         {
@@ -12,20 +11,31 @@ namespace Lottery.State
         }
         public void Enter()
         {
-            
         }
 
         public void Update()
         {
+            _challengeCount++;
+            if (_chanceManager.IsMaxChanceMode)
+            {
+                _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Fiver);
+                return;
+            }
             if (_chanceManager.LotteryTable.FiverChance >= _chanceManager.RandomValue)
             {
                 _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Fiver);
+                return;
+            }
+
+            if (_chanceManager.LotteryTable.FiverChallengeLimit < _challengeCount)
+            {
+                _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Normal);
             }
         }
 
         public void Exit()
         {
-            
+            _chanceManager.IsMaxChanceMode = false;
         }
     }
 }
