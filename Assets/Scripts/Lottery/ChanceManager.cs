@@ -10,17 +10,24 @@ namespace Lottery
         [SerializeField] private int _lotteryStartCount;
         [SerializeField] private bool _isFiver;
         [SerializeField] private SpawnMedal _spawnMedal;
+        [SerializeField] private ChanceChangeModeManager _chanceChangeModeManager;
         [SerializeField] private LotteryTable _lotteryTable;
         [SerializeField] private LotteryMedal _lotteryMedal;
         private StateMachine _stateMachine;
-        [Header("デバッグ用")]
+        [Header("デバッグ用SerializeField")]
         [SerializeField] private Text _nowStateText;
         [SerializeField] private float _randomValue;
         [SerializeField] private int _gameCount;
 
+        public bool IsChanceChangeMode { get; set; }
+        public bool IsMaxChanceMode { get; set; }
         public float RandomValue => _randomValue;
         public StateMachine StateMachine => _stateMachine;
-        public bool IsFiver => _isFiver;
+        public bool IsFiver
+        {
+            get => _isFiver;
+            set => _isFiver = value;
+        }
         public SpawnMedal SpawnMedal => _spawnMedal;
         public LotteryTable LotteryTable => _lotteryTable;
         public LotteryMedal LotteryMedal => _lotteryMedal;
@@ -45,6 +52,8 @@ namespace Lottery
             _gameCount++;
             if (_gameCount >= _lotteryStartCount)
             {
+                IsChanceChangeMode = _chanceChangeModeManager.CheckGameCount();
+                IsMaxChanceMode = _chanceChangeModeManager.CheckMaxGameCount();
                 _randomValue = Random.Range(1f, 101f);
                 _stateMachine.StateUpdate();
                 _gameCount = 0;
