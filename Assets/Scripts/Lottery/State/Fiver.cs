@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Lottery.State
 {
     public class Fiver : IState
@@ -12,6 +10,7 @@ namespace Lottery.State
         }
         public void Enter()
         {
+            _chanceManager.IsFiver = true;
             for (var i = 0; i < _chanceManager.LotteryMedal.FiverMedalCount; i++)
             {
                 _chanceManager.SpawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
@@ -20,7 +19,7 @@ namespace Lottery.State
 
         public void Update()
         {
-            if (_chanceManager.LotteryTable.FiverContinue <= _chanceManager.RandomValue)
+            if (_chanceManager.LotteryTable.FiverContinue >= _chanceManager.RandomValue)
             {
                 _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Fiver);
             }
@@ -32,7 +31,8 @@ namespace Lottery.State
 
         public void Exit()
         {
-            
+            ChanceChangeModeManager.ChanceGameCount = 0;
+            _chanceManager.IsFiver = false;
         }
     }
 }
