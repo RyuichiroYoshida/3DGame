@@ -10,6 +10,7 @@ namespace Lottery
         public readonly Normal Normal;
         public readonly FiverChance FiverChance;
         public readonly Fiver Fiver;
+        public readonly Bonus Bonus;
 
         public event Action<IState> StateChanged; 
         
@@ -18,6 +19,7 @@ namespace Lottery
             Normal = new Normal(chanceManager);
             FiverChance = new FiverChance(chanceManager);
             Fiver = new Fiver(chanceManager);
+            Bonus = new Bonus(chanceManager);
         }
 
         public void Initialize(IState startState)
