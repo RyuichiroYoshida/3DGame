@@ -1,10 +1,12 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class DebugSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject _medal;
+
+    private void Start()
+    {
+    }
 
     public void CheckPool()
     {
