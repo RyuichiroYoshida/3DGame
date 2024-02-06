@@ -6,8 +6,9 @@ public class MedalShooter : MonoBehaviour
     [SerializeField] private Transform _middleTrans;
     [SerializeField] private Transform _endTrans;
     [SerializeField] private int _rendererMiddlePoint = 10;
-    [SerializeField] private GameObject _medalPrefab;
     [SerializeField] private ChanceManager _chanceManager;
+    [SerializeField] private AudioSource _audioSource;
+    
     private Vector3 _startPos;
     private Vector3 _middlePos;
     private Vector3 _endPos;
@@ -17,6 +18,7 @@ public class MedalShooter : MonoBehaviour
     private void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -55,5 +57,6 @@ public class MedalShooter : MonoBehaviour
         rb.AddForce((_middlePos - _startPos) * 11, ForceMode.Impulse);
         StageManager.Instance.AddGameCount();
         _chanceManager.PlayGame();
+        _audioSource.Play();
     }
 }
