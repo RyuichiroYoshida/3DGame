@@ -1,3 +1,5 @@
+using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,21 +10,27 @@ namespace ColorController
         [SerializeField] private Image _image;
         [SerializeField] private float _speed;
         [SerializeField] private bool _isUse;
-        private Color _defaultColor;
+        private AudioSource _audioSource;
+        private bool _isAudioEnd;
 
         private void Start()
         {
-            _defaultColor = Color.white;
+            _image.material.SetColor("_Color", Color.white);
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Update()
         {
             if (!_isUse)
             {
-                _image.material.SetColor("_Color", _defaultColor);
                 return;
             }
             RainbowLight();
+        }
+
+        private void OnDisable()
+        {
+            _isAudioEnd = false;
         }
 
         private void RainbowLight()
@@ -33,6 +41,20 @@ namespace ColorController
                 h = 0;
             }
             _image.material.SetColor("_Color", Color.HSVToRGB(h + _speed, s, v));
+            if (!_isAudioEnd)
+            {
+                PlayAudioAsync().Forget();
+                _isAudioEnd = true;
+            }
+        }
+
+        private async UniTaskVoid PlayAudioAsync()
+        {
+            for (var i = 0; i < 6; i++)
+            {
+                _audioSource.Play();
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
+            }
         }
     }
 }
