@@ -8,20 +8,24 @@ namespace Lottery.State
         {
             _chanceManager = chanceManager;
         }
+
         public void Enter()
         {
-            _chanceManager.IsFiver = true;
-            for (var i = 0; i < _chanceManager.LotteryMedal.FiverMedalCount; i++)
+            var source = AudioManager.Instance.FiverBGM;
+            if (!source.isPlaying)
             {
-                _chanceManager.SpawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
+                source.Play();
             }
+
+            SpawnFiverMedal();
+            _chanceManager.IsFiver = true;
         }
 
         public void Update()
         {
             if (_chanceManager.LotteryTable.FiverContinue >= _chanceManager.RandomValue)
             {
-                _chanceManager.StateMachine.TransitionTo(_chanceManager.StateMachine.Fiver);
+                SpawnFiverMedal();
             }
             else
             {
@@ -33,6 +37,16 @@ namespace Lottery.State
         {
             ChanceChangeModeManager.ChanceGameCount = 0;
             _chanceManager.IsFiver = false;
+            AudioManager.Instance.FiverBGM.Stop();
+        }
+
+        private void SpawnFiverMedal()
+        {
+            AudioManager.Instance.FiverDropMedal.Play();
+            for (var i = 0; i < _chanceManager.LotteryMedal.FiverMedalCount; i++)
+            {
+                _chanceManager.SpawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
+            }
         }
     }
 }
