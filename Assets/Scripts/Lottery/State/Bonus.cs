@@ -11,6 +11,7 @@ namespace Lottery.State
         
         public void Enter()
         {
+            AudioManager.Instance.BonusAudio.Play();
             for (var i = 0; i < _chanceManager.LotteryMedal.WinMedalCount; i++)
             {
                 _chanceManager.SpawnMedal.MedalSpawn(MedalObjectPool.Instance.Pool);
@@ -24,7 +25,7 @@ namespace Lottery.State
 
         public void Exit()
         {
-            
+            AudioManager.Instance.BonusAudio.Stop();
         }
     }
 }
