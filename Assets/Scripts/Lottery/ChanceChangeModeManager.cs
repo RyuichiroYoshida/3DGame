@@ -64,7 +64,7 @@ namespace Lottery
                 {
                     _chanceImage.gameObject.SetActive(true);
                     _chanceImage.color = _defaultColor;
-                    DOVirtual.DelayedCall(2.5f, () => _chanceImage.DOFade(0f, 2)
+                    DOVirtual.DelayedCall(1, () => _chanceImage.DOFade(0f, 1)
                             .OnComplete(() => _chanceImage.gameObject.SetActive(false)), false);
                 }
             }
