@@ -22,8 +22,7 @@ namespace Medal
                 StageManager.Instance.AddMedalGetCount();
                 _isSound = false;
             }
-            else if (collision.gameObject.CompareTag("UpperStage") || collision.gameObject.CompareTag("Ground")
-                     && _isSound == false)
+            else if (collision.gameObject.CompareTag("UpperStage") && _isSound == false)
             {
                 _isSound = true;
                 AudioManager.Instance.AMedalDrop();
