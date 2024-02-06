@@ -25,6 +25,12 @@ public class PauseController : MonoBehaviour
     }
     public void UsePauseWindow()
     {
+        var chanceAudio = AudioManager.Instance.ChanceAudio;
+        if (chanceAudio.isPlaying)
+        {
+            chanceAudio.Stop();
+        }
+        
         _gameTextManager.EditText();
         _isPause = !_isPause;
         _pauseCanvas.SetActive(_isPause);
