@@ -11,6 +11,7 @@ namespace Lottery.State
         }
         public void Enter()
         {
+            AudioManager.Instance.ChanceAudio.Play();
         }
 
         public void Update()
@@ -36,6 +37,7 @@ namespace Lottery.State
         public void Exit()
         {
             _chanceManager.IsMaxChanceMode = false;
+            AudioManager.Instance.ChanceAudio.Stop();
         }
     }
 }
