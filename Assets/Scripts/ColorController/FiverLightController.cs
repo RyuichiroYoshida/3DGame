@@ -49,12 +49,11 @@ namespace ColorController
                 return;
             }
             Color.RGBToHSV(_light.color, out _h, out _s, out _v);
-            if (_h >= 360)
+            if (_h >= 1)
             {
                 _h = 0;
             }
-            _s = 200;
-            _light.color = Color.HSVToRGB(_h + _speed * Time.deltaTime, _s, _v);
+            _light.color = Color.HSVToRGB(_h + _speed, 1, 1);
         }
     }
 }
